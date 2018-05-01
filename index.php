@@ -1,22 +1,385 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
+
+
+<?php require_once('Connections/connect.php'); ?>
+<?php
+$conn = mysqli_connect("localhost", "root","12345678","material");
+$sql = "SELECT * FROM description ORDER BY ID ASC";
+$result = mysqli_query($conn, $sql);
+
+
+
+?>
+<!DOCTYPE html>
+
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html language="en">
+<head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>หน้าหลัก</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+    <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
+          page. However, you can choose any other skin. Make sure you
+          apply the skin class to the body tag so the changes take effect. -->
+    <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.css"/>
 
-    <title>Hello, world!</title>
-  </head>
-  <body>
-    <h1>Hello, world!</h1>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
-  </body>
-</html>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Google Font -->
+    <link href='https://fonts.googleapis.com/css?family=Kanit:400,300&subset=thai,latin' rel='stylesheet' type='text/css'>
+                    <!-- นำเข้า  CSS จาก Bootstrap -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        
+        <!-- นำเข้า  CSS จาก dataTables -->
+       <link rel="stylesheet" href="../../bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+         
+        <!-- นำเข้า  Javascript จาก  Jquery -->
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <!-- นำเข้า  Javascript  จาก   dataTables -->
+        <script src="../../bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script src="../../bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <style>
+        body {
+            font-family: 'Kanit', sans-serif;
+        }
+        h1 {
+            font-family: 'Kanit', sans-serif;
+        }
+        h2 {
+            font-family: 'Kanit', sans-serif;
+        }
+        h3 {
+            font-family: 'Kanit', sans-serif;
+        }
+        h4 {
+            font-family: 'Kanit', sans-serif;
+        }
+          h5 {
+            font-family: 'Kanit', sans-serif;
+        }
+         h6 {
+            font-family: 'Kanit', sans-serif;
+        }
+        fieldset 
+    {
+        border: 1px solid #ddd !important;
+        margin: 0;
+        xmin-width: 0;
+        padding: 10px;       
+        position: relative;
+        border-radius:4px;
+        background-color:#E7E6F8;
+        padding-left:10px!important;
+    }   
+    
+        legend
+        {
+            font-size:14px;
+            font-weight:bold;
+            margin-bottom: 0px; 
+            width: 35%; 
+            border: 1px solid #ddd;
+            border-radius: 4px; 
+            padding: 5px 5px 5px 10px; 
+            background-color: #40B4FC;
+        }
+
+    </style>
+</head>
+<!--
+BODY TAG OPTIONS:
+=================
+Apply one or more of the following classes to get the
+desired effect
+|---------------------------------------------------------|
+| SKINS         | skin-blue                               |
+|               | skin-black                              |
+|               | skin-purple                             |
+|               | skin-yellow                             |
+|               | skin-red                                |
+|               | skin-green                              |
+|---------------------------------------------------------|
+|LAYOUT OPTIONS | fixed                                   |
+|               | layout-boxed                            |
+|               | layout-top-nav                          |
+|               | sidebar-collapse                        |
+|               | sidebar-mini                            |
+|---------------------------------------------------------|
+-->
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+    <!-- Main Header -->
+    <header class="main-header">
+
+        <!-- Logo -->
+        <a href="index.php" class="logo">
+            <!-- mini logo for sidebar mini 50x50 pixels -->
+            <span class="logo-mini">OAG</span>
+            <!-- logo for regular state and mobile devices -->
+            <span class="logo-lg"><h4>ระบบบริหารครุภัณฑ์</h4>/span>
+        </a>
+
+        <!-- Header Navbar -->
+        <nav class="navbar navbar-static-top" role="navigation">
+            <!-- Sidebar toggle button-->
+            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+            <!-- Navbar Right Menu -->
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <!-- Messages: style can be found in dropdown.less-->
+                    
+                    <!-- /.messages-menu -->
+
+                    <!-- Notifications Menu -->
+                    
+                    <!-- Tasks Menu -->
+                   
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar">
+
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+
+            <!-- Sidebar user panel (optional) -->
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <img src="dist/img/avatar5.png" class="img-circle" alt="User Image">
+                </div>
+                <div class="pull-left info">
+                    <p>User</p>
+                    <!-- Status -->
+                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                </div>
+            </div>
+
+         
+
+            <!-- Sidebar Menu -->
+            <ul class="sidebar-menu" data-widget="tree">
+                <li class="header">HEADER</li>
+                <!-- Optionally, you can add icons to the links -->
+                <li class="active"><a href="#"><i class="fa fa-home"></i> <span>หน้าแรก</span></a></li>
+                <li><a href="report.php"><i class="fa fa-book"></i> <span>รายการครุภัณฑ์</span></a></li>
+                <li class="treeview">
+                    <a href="login.php"><i class="fa fa-link"></i> <span>ตรวจสอบสถานะครุภัณฑ์</span>
+                        <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="#">Link in level 2</a></li>
+                        <li><a href="#">Link in level 2</a></li>
+                    </ul>
+                </li>
+                <li><a href="login.html"><i class="fa fa-sign-out"></i> <span>ออกจากระบบ</span></a></li>
+            </ul>
+            <!-- /.sidebar-menu -->
+        </section>
+        <!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                ค้นหารายการครุภัณฑ์
+                <small>สำนักดิจิทัล</small>
+            </h1>
+            <ol class="breadcrumb">
+                  
+            <!-- Trigger the modal with a button -->
+                  <button type="button" class="btn btn-info " data-toggle="modal" data-target="#myModal"><h5><i class="fa fa-pencil-square-o" aria-hidden="true">&nbsp;เพิ่มรายการครุภัณฑ์</i></h5></button>
+                    
+                  <!-- Modal -->
+                  <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                         <!-- <button type="button" class="close" data-dismiss="modal">&times;</button>-->
+                          
+                        </div>
+                        <div class="modal-body">
+                         <!--ฟอร์มเพิ่มรายการครุภัณฑ์-->
+                         <div class="container-fluid">
+                                                         <fieldset class="col-md-12">      
+                    <legend>ลงทะเบียนครุภัณฑ์</legend> <form class="needs-validation" novalidate>
+                                  
+                                      <div class="form-row">
+                                        <div class="col-md-6 mb-3">
+                                          <label >ประเภทครุภัณฑ์</label>
+                                          <select class="form-control col-md-6 mb-3" id="">
+                                                  <option selected ">เลือกประเภทครุภัณฑ์</option>
+                                                  <option value="1">Wireless USB</option>
+                                                  <option value="2">Notbook</option>
+                                                  <option value="3">Printer</option>
+                                                  <option value="3">Projector</option>
+                                                  <option value="3">Monitor</option>
+                                                  <option value="3">Switch</option>
+                                                </select>
+                                          
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                          <label >ยี่ห้อ</label>
+                                          <select class="form-control col-md-6 mb-3" id="">
+                                                  <option selected ">เลือกยี่ห้อครุภัณฑ์</option>
+                                                  <option value="1">Acer</option>
+                                                  <option value="2">Brother</option>
+                                                  <option value="3">Cisco</option>
+                                                  <option value="3">Dell</option>
+                                                  <option value="3">HP</option>
+                                                  <option value="3">Lenovo</option>
+                                                  <option value="3">Switch</option>
+                                                </select>
+                                         
+                                          
+                                        </div>
+
+                                      </div><br>
+                                      <div class="form-row">
+                                        <div class="col-md-6 mb-3">
+                                          <label >รุ่น</label>
+                                           <input type="text" class="form-control" id="validationDefault03" placeholder="รุ่น" required>
+                                        
+                                      </div>
+                                      <div class="col-md-6 mb-3">
+                                          <label >S/N</label>
+                                           <input type="text" class="form-control" id="validationDefault03" placeholder="s/n" required>
+                                         
+                                          
+                                        </div>
+                                        
+                                      </div>
+                                     
+                                </form>
+                                  </fieldset>
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="submit" class="btn btn-primary" data-dismiss="modal">บันทึก</button>
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+                
+                
+            </ol>
+        </section>
+            <br>
+        <!-- Main content -->
+        <section class="content container-fluid">
+
+            <!--------------------------
+              | Your Page Content Here |
+              -------------------------->
+                   <!-- search form (Optional) -->
+            <form action="index.php" method="post" class="sidebar-form">
+                <div class="input-group">
+                    <input type="text" name="search" class="form-control" placeholder="ระบุคำค้น">
+                    <span class="input-group-btn">
+              <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+              </button>
+            </span>
+                </div>
+            </form>
+            <!-- /.search form -->
+           <?php print("$output") ;?>
+
+<table class="table" id="example2">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">ลำดับ</th>
+      <th scope="col">ยี่ห้อ</th>
+      <th scope="col">รุ่น</th>
+      <th scope="col">ซีเรียลนัมเบอร์</th>
+      <th scope="col">สถานะ</th>
+      <th scope="col">ประเภทครุภัณฑ์</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row"></th>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Main Footer -->
+    <footer class="main-footer">
+        <!-- To the right -->
+        <!--<div class="pull-right hidden-xs">
+          Anything you want
+        </div>-->
+        <!-- Default to the left -->
+        <strong>Copyright &copy; 2018 <a href="https://www.oag.go.th/">สำนักดิจิทัล สำนักการตรวจเงินแผ่นดิน</a></strong> All rights reserved.
+    </footer>
+
+    <!-- Control Sidebar -->
+  
+     
+
+            <!-- REQUIRED JS SCRIPTS -->
+
+            <!-- jQuery 3 -->
+            <script src="bower_components/jquery/dist/jquery.min.js"></script>
+            <!-- Bootstrap 3.3.7 -->
+            <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+            <!-- AdminLTE App -->
+            <script src="dist/js/adminlte.min.js"></script>
+            <script src="dist/js/jquery.tabledit.js"></script>
+
+            <script>
+  $(function () {
+    $('#example1').DataTable()
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
+</script>
+
+            <!-- Optionally, you can add Slimscroll and FastClick plugins.
+                 Both of these plugins are recommended to enhance the
+                 user experience. -->
+</body>
+
+

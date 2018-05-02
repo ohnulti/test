@@ -19,11 +19,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>หน้าหลัก</title>
+    <title>รายการครุภัณฑ์</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="icon" type="image/png" href="dist/images/icons/logo.ico"/>
+    <!--icon link-->
+    <link rel="icon" type="image/png" href="dist/images/icons/list-512.png"/>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
     <!-- Ionicons -->
@@ -52,13 +53,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         
         <!-- นำเข้า  CSS จาก dataTables -->
-       <link rel="stylesheet" href="../../bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+           <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.css"/>
          
         <!-- นำเข้า  Javascript จาก  Jquery -->
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <!-- นำเข้า  Javascript  จาก   dataTables -->
-        <script src="../../bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-        <script src="../../bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+       <script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+<script type="text/javascript" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+ 
+<script>
+        
+$(document).ready(function() {
+    $('#example').DataTable();
+} );
+ 
+    </script>
     <style>
         body {
             font-family: 'Kanit', sans-serif;
@@ -151,13 +160,13 @@ desired effect
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
                     <!-- Messages: style can be found in dropdown.less-->
-                    
+
                     <!-- /.messages-menu -->
 
                     <!-- Notifications Menu -->
-                    
+
                     <!-- Tasks Menu -->
-                   
+
                 </ul>
             </div>
         </nav>
@@ -180,16 +189,16 @@ desired effect
                 </div>
             </div>
 
-         
+
 
             <!-- Sidebar Menu -->
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">HEADER</li>
                 <!-- Optionally, you can add icons to the links -->
-                <li class="active"><a href="#"><i class="fa fa-home"></i> <span>หน้าแรก</span></a></li>
-                <li><a href="report.php"><i class="fa fa-book"></i> <span>รายการครุภัณฑ์</span></a></li>
+                <li class="active"><a href="index.php"><i class="fa fa-home"></i> <span>หน้าแรก</span></a></li>
+                <li><a href="#"><i class="fa fa-book"></i> <span>รายการครุภัณฑ์</span></a></li>
                 <li class="treeview">
-                    <a href="borrow.php"><i class="fa fa-link"></i> <span>ยืมครุภัณฑ์อบรม</span>
+                    <a href="#"><i class="fa fa-link"></i> <span>รายการยืม</span>
                         <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
@@ -199,7 +208,7 @@ desired effect
                         <li><a href="#"><i class="fa fa-eject" aria-hidden="true"></i>ทำรายการคืน</a></li>
                     </ul>
                 </li>
-                <li><a href="login.html"><i class="fa fa-sign-out"></i> <span>ออกจากระบบ</span></a></li>
+                <li><a href="login.php"><i class="fa fa-sign-out"></i> <span>ออกจากระบบ</span></a></li>
             </ul>
             <!-- /.sidebar-menu -->
         </section>
@@ -211,13 +220,86 @@ desired effect
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                ค้นหารายการครุภัณฑ์
+                รายการครุภัณฑ์
                 <small>สำนักดิจิทัล</small>
             </h1>
             <ol class="breadcrumb">
-                  
+                <!-- Trigger the modal with a button -->
+                <button type="button" class="btn btn-info " data-toggle="modal" data-target="#myModal"><h5><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;เพิ่มรายการครุภัณฑ์</h5></button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <!-- <button type="button" class="close" data-dismiss="modal">&times;</button>-->
+
+                            </div>
+                            <div class="modal-body">
+                                <!--ฟอร์มเพิ่มรายการครุภัณฑ์-->
+                                <div class="container-fluid">
+                                    <fieldset class="col-md-12">
+                                        <legend>ลงทะเบียนครุภัณฑ์</legend> <form class="needs-validation" novalidate>
+
+                                            <div class="form-row">
+                                                <div class="col-md-6 mb-3">
+                                                    <label >ประเภทครุภัณฑ์</label>
+                                                    <select class="form-control col-md-6 mb-3" id="">
+                                                        <option selected ">เลือกประเภทครุภัณฑ์</option>
+                                                        <option value="1">Wireless USB</option>
+                                                        <option value="2">Notbook</option>
+                                                        <option value="3">Printer</option>
+                                                        <option value="3">Projector</option>
+                                                        <option value="3">Monitor</option>
+                                                        <option value="3">Switch</option>
+                                                    </select>
+
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <label >ยี่ห้อ</label>
+                                                    <select class="form-control col-md-6 mb-3" id="">
+                                                        <option selected ">เลือกยี่ห้อครุภัณฑ์</option>
+                                                        <option value="1">Acer</option>
+                                                        <option value="2">Brother</option>
+                                                        <option value="3">Cisco</option>
+                                                        <option value="3">Dell</option>
+                                                        <option value="3">HP</option>
+                                                        <option value="3">Lenovo</option>
+                                                        <option value="3">Switch</option>
+                                                    </select>
+
+
+                                                </div>
+
+                                            </div><br>
+                                            <div class="form-row">
+                                                <div class="col-md-6 mb-3">
+                                                    <label >รุ่น</label>
+                                                    <input type="text" class="form-control" id="validationDefault03" placeholder="รุ่น" required>
+
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <label >S/N</label>
+                                                    <input type="text" class="form-control" id="validationDefault03" placeholder="s/n" required>
+
+
+                                                </div>
+
+                                            </div>
+
+                                        </form>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary" data-dismiss="modal">บันทึก</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
             </ol>
+
         </section>
             <br>
         <!-- Main content -->
@@ -226,39 +308,42 @@ desired effect
             <!--------------------------
               | Your Page Content Here |
               -------------------------->
-                   <!-- search form (Optional) -->
-            <form action="index.php" method="post" class="sidebar-form">
-                <div class="input-group">
-                    <input type="text" name="search" class="form-control" placeholder="ระบุคำค้น">
-                    <span class="input-group-btn">
-              <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-              </button>
-            </span>
-                </div>
-            </form>
-            <!-- /.search form -->
 
+           <?php print("$output") ;?>
 
-<table class="table" id="example2">
+<table class="table" id="example">
   <thead class="thead-light">
     <tr>
       <th scope="col">ลำดับ</th>
       <th scope="col">ยี่ห้อ</th>
+      <th scope="col">รหัสยี่ห้อ</th>
       <th scope="col">รุ่น</th>
       <th scope="col">ซีเรียลนัมเบอร์</th>
       <th scope="col">สถานะ</th>
       <th scope="col">ประเภทครุภัณฑ์</th>
+      <th scope="col">วันที่บันทึก</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row"></th>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
+        <?php
+                    $sql = "SELECT * FROM description";
+                    $result = $conn->query($sql);
+                    if ($result->num_rows > 0) {
+ 
+                        while($row = $result->fetch_assoc()) {
+                            echo "<tr>";
+                            echo "<td>" . $row["desc_id"]. "</td>";
+                            echo "<td>" . $row["brand"]. "</td>";
+                            echo "<td>" . $row["brand_name"]. "</td>";
+                            echo "<td>" . $row["version"]. "</td>";
+                            echo "<td>" . $row["serial"]. "</td>";
+                            echo "<td>" . $row["status"]. "</td>";
+                            echo "<td>" . $row["type_name"]. "</td>";
+                            echo "<td>" . $row["brand_name"]. "</td>";
+                            echo "</tr>";
+                        }
+                    }
+                   ?> 
   </tbody>
 </table>
         </section>
@@ -289,20 +374,8 @@ desired effect
             <!-- AdminLTE App -->
             <script src="dist/js/adminlte.min.js"></script>
             <script src="dist/js/jquery.tabledit.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
 
-            <script>
-  $(function () {
-    $('#example1').DataTable()
-    $('#example2').DataTable({
-      'paging'      : true,
-      'lengthChange': false,
-      'searching'   : false,
-      'ordering'    : true,
-      'info'        : true,
-      'autoWidth'   : false
-    })
-  })
-</script>
 
             <!-- Optionally, you can add Slimscroll and FastClick plugins.
                  Both of these plugins are recommended to enhance the
